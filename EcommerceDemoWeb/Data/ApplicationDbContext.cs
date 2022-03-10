@@ -1,4 +1,5 @@
-﻿using EcommerceDemoWeb.Controllers;
+﻿using EcommerceDemoWeb.Areas.Admin.Models;
+using EcommerceDemoWeb.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceDemoWeb.Data
@@ -11,5 +12,7 @@ namespace EcommerceDemoWeb.Data
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Seller> Seller { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

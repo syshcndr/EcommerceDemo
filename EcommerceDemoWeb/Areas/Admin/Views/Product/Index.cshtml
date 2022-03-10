@@ -1,0 +1,55 @@
+﻿@using EcommerceDemoWeb.Areas.Admin.Models
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp;New Product
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Seller</th>
+            <th>Update/Delete</th>
+        </tr>
+    </thead>
+    <thbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Description</td>
+                <td>@obj.Brand</td>
+                <td>@obj.ListPrice</td>
+                <td>@obj.Category</td>
+                <td>@obj.Seller</td>
+                <td class="row">
+                    <div class="col"><button><a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button></div>                    
+                    <div class="col">
+                        <form method="post" asp-action="DeletePost" asp-route-id="@obj.Id">
+                            <button type="submit"><i class="bi bi-trash"></i></button>
+                        </form>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </thbody>
+</table>
