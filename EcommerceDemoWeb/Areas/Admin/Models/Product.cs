@@ -27,15 +27,19 @@ namespace EcommerceDemoWeb.Areas.Admin.Models
         [ValidateNever]
         public string ImageUrl { get; set; }
 
+        
+        //public int CategoryId { get; set; }
+        //[ForeignKey("CategoryId")]
+        //[ValidateNever]
+        //public Category Category { get; set; }
         [Required]
-        public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        [ValidateNever]
-        public Category Category { get; set; }
+        public string CategoryName { get; set; }
 
-        [Required]
-        public int SellerId { get; set; }
-        [ValidateNever]
-        public Seller Seller { get; set; }
+        
+        //public int SellerId { get; set; }
+        //[ValidateNever]
+        //public Seller Seller { get; set; }
+        //[Required]
+        public string SellerName { get; set; }
     }
 }

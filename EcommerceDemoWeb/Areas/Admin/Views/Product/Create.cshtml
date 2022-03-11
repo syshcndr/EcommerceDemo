@@ -41,13 +41,13 @@
             <input asp-for="ImageUrl" class="form-control" />
             <span asp-validation-for="ImageUrl" class="text-danger"></span>
 
-            <label asp-for="CategoryId"></label>
-            <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select"><option disabled selected>Select Category</option></select>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <label asp-for="CategoryName"></label>
+            <select asp-for="CategoryName" asp-items="ViewBag.CategoryList" class="form-select"><option disabled selected>Select Category</option></select>
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
 
-            <label asp-for="SellerId"></label>
-            <select asp-for="SellerId" asp-items="ViewBag.SellerList" class="form-select"><option disabled selected>Select Seller</option></select>
-            <span asp-validation-for="SellerId" class="text-danger"></span>
+            <label asp-for="SellerName"></label>
+            <select asp-for="SellerName" asp-items="ViewBag.SellerList" class="form-select"><option disabled selected>Select Seller</option></select>
+            <span asp-validation-for="SellerName" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Create</button>

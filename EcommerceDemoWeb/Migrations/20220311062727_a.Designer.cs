@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceDemoWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220310104620_all")]
-    partial class all
+    [Migration("20220311062727_a")]
+    partial class a
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,8 +36,9 @@ namespace EcommerceDemoWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -58,14 +59,11 @@ namespace EcommerceDemoWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SellerId")
-                        .HasColumnType("int");
+                    b.Property<string>("SellerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("SellerId");
 
                     b.ToTable("Product");
                 });
@@ -109,25 +107,6 @@ namespace EcommerceDemoWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Seller");
-                });
-
-            modelBuilder.Entity("EcommerceDemoWeb.Areas.Admin.Models.Product", b =>
-                {
-                    b.HasOne("EcommerceDemoWeb.Controllers.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EcommerceDemoWeb.Controllers.Seller", "Seller")
-                        .WithMany()
-                        .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Seller");
                 });
 #pragma warning restore 612, 618
         }

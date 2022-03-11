@@ -31,15 +31,17 @@
         </tr>
     </thead>
     <thbody>
+        
         @foreach (var obj in Model)
         {
+            
             <tr>
                 <td>@obj.Name</td>
                 <td>@obj.Description</td>
                 <td>@obj.Brand</td>
                 <td>@obj.ListPrice</td>
-                <td>@obj.Category</td>
-                <td>@obj.Seller</td>
+                <td>@obj.CategoryName</td>
+                <td>@obj.SellerName</td>
                 <td class="row">
                     <div class="col"><button><a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button></div>                    
                     <div class="col">
