@@ -16,14 +16,16 @@ namespace EcommerceDemoWeb.Controllers
         }
         public IActionResult Index()
         {
+            
             IEnumerable<Product> objProductList = _db.Product.ToList();
+            
             return View(objProductList);
         }
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> CategoryList = _db.Categories.ToList().Select(u => new SelectListItem { Text = u.Name,Value = u.Id.ToString() });
-            IEnumerable<SelectListItem> SellerList = _db.Seller.ToList().Select(u => new SelectListItem { Text = u.Name, Value = u.Id.ToString() });
+            IEnumerable<SelectListItem> CategoryList = _db.Categories.ToList().Select(u => new SelectListItem { Text = u.Name,Value = u.Name });
+            IEnumerable<SelectListItem> SellerList = _db.Seller.ToList().Select(u => new SelectListItem { Text = u.Name, Value = u.Name });
             ViewBag.CategoryList = CategoryList;
             ViewBag.SellerList = SellerList;
             return View();
@@ -32,7 +34,7 @@ namespace EcommerceDemoWeb.Controllers
         [HttpPost]
         public IActionResult Create(Product obj)
         {
-           
+            
             if (ModelState.IsValid)
             {
                 _db.Product.Add(obj);
