@@ -1,4 +1,5 @@
 ﻿using EcommerceDemoWeb.Areas.Admin.Models;
+using EcommerceDemoWeb.Areas.Customer.Models;
 using EcommerceDemoWeb.Controllers;
 using EcommerceDemoWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace EcommerceDemoWeb.Data
         public DbSet<Seller> Seller { get; set; }
         public DbSet<Product> Product { get; set; }
 
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -2,8 +2,10 @@
 using EcommerceDemoWeb.Areas.Customer.Models;
 using EcommerceDemoWeb.Data;
 using EcommerceDemoWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace EcommerceDemoWeb.Controllers
 {
@@ -30,15 +32,38 @@ namespace EcommerceDemoWeb.Controllers
             ShoppingCart cartObj = new()
             {
                 Count = 1,
+                ProductId = productId ,
                 Product = _db.Product.FirstOrDefault(u=> u.Id== productId),
 
             };
             
-        
-
             return View(cartObj);
         }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claim.Value;
 
+            ShoppingCart cartFromDb = _db.ShoppingCarts.FirstOrDefault(
+            u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
+
+            if (cartFromDb == null)
+            {
+                _db.ShoppingCarts.Add(shoppingCart); 
+            }
+            else
+            {
+             
+               cartFromDb.Count+=shoppingCart.Count;
+            }
+            _db.SaveChanges();
+
+
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
             return View();
