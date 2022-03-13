@@ -1,4 +1,4 @@
-﻿using EcommerceDemoWeb.Areas.Admin.Models;
+﻿using EcommerceDemoWeb.Models;
 using EcommerceDemoWeb.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,6 +37,7 @@ namespace EcommerceDemoWeb.Controllers
             
             if (ModelState.IsValid)
             {
+                
                 _db.Product.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");

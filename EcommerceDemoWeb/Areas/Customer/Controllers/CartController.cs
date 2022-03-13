@@ -1,4 +1,4 @@
-﻿using EcommerceDemoWeb.Areas.Customer.Models.ViewModels;
+﻿using EcommerceDemoWeb.Models.ViewModels;
 using EcommerceDemoWeb.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,15 +21,44 @@ namespace EcommerceDemoWeb.Areas.Customer.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var aui = _db.ShoppingCarts.ToList();
-            var shopcart = _db.ShoppingCarts.ToList().Where(o=> o.ApplicationUserId== claim.Value);
+            
+           
             ShoppingCartVm = new ShoppingCartVM() {
                 
                 ListCart = _db.ShoppingCarts.ToList().Where(u => u.ApplicationUserId == claim.Value)
             };
-            ViewBag.shopcart = shopcart;
-            ViewBag.cartItems = ShoppingCartVm;
+            ShoppingCartVm.ListCart.ToList().ForEach(x => x.Product = _db.Product.FirstOrDefault(u => u.Id == x.ProductId));
+            int sum = 0;
+            foreach(var item in ShoppingCartVm.ListCart)
+            {
+                sum = (int)(sum + item.Product.ListPrice) * item.Count;
+            }
+            ViewBag.CartSum = sum;
+
             return View(ShoppingCartVm);
+        }
+
+        public IActionResult Increase(int cartId)
+        {
+            var cart = _db.ShoppingCarts.FirstOrDefault(u => u.Id == cartId);
+            cart.Count = cart.Count+1;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Decrease(int cartId)
+        {
+            var cart = _db.ShoppingCarts.FirstOrDefault(u => u.Id == cartId);
+            cart.Count = cart.Count -1;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Remove(int cartId)
+        {
+            var cart = _db.ShoppingCarts.FirstOrDefault(u => u.Id == cartId);
+            _db.ShoppingCarts.Remove(cart);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

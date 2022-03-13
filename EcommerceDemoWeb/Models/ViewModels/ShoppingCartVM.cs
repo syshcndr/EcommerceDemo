@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace EcommerceDemoWeb.Areas.Customer.Models.ViewModels
+namespace EcommerceDemoWeb.Models.ViewModels
 {
     public class ShoppingCartVM
     {

@@ -1,7 +1,5 @@
-﻿using EcommerceDemoWeb.Areas.Admin.Models;
-using EcommerceDemoWeb.Areas.Customer.Models;
+﻿using EcommerceDemoWeb.Models;
 using EcommerceDemoWeb.Data;
-using EcommerceDemoWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -52,13 +50,15 @@ namespace EcommerceDemoWeb.Controllers
 
             if (cartFromDb == null)
             {
+               
                 _db.ShoppingCarts.Add(shoppingCart); 
             }
             else
             {
-             
-               cartFromDb.Count+=shoppingCart.Count;
+              
+                cartFromDb.Count+=shoppingCart.Count;
             }
+            shoppingCart.Product = _db.Product.FirstOrDefault(u => u.Id == shoppingCart.ProductId);
             _db.SaveChanges();
 
 

@@ -1,4 +1,5 @@
 ﻿using EcommerceDemoWeb.Data;
+using EcommerceDemoWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceDemoWeb.Controllers

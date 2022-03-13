@@ -1,7 +1,5 @@
-﻿using EcommerceDemoWeb.Areas.Admin.Models;
-using EcommerceDemoWeb.Areas.Customer.Models;
+﻿using EcommerceDemoWeb.Models;
 using EcommerceDemoWeb.Controllers;
-using EcommerceDemoWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

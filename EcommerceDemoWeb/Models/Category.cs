@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace EcommerceDemoWeb.Controllers
+namespace EcommerceDemoWeb.Models
+
 {
     public class Category
     {
