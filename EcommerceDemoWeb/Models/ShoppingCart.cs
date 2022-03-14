@@ -21,6 +21,9 @@ namespace EcommerceDemoWeb.Models
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
         public ApplicationUser Customer { get; set; }
+
+        [NotMapped]
+        public double Price { get; set; }
         
     }
 }

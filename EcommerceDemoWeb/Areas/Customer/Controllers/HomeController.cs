@@ -27,12 +27,14 @@ namespace EcommerceDemoWeb.Controllers
 
         public IActionResult Details(int productId)
         {
+
+            var product = _db.Product.FirstOrDefault(u => u.Id == productId);
             ShoppingCart cartObj = new()
             {
                 Count = 1,
-                ProductId = productId ,
-                Product = _db.Product.FirstOrDefault(u=> u.Id== productId),
-
+                ProductId = productId,
+                Product = product,
+                Price = product.ListPrice,
             };
             
             return View(cartObj);

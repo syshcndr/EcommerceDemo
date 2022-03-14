@@ -34,16 +34,6 @@ namespace EcommerceDemoWeb.Models
 
 
         
-        /*[Display(Name = "Category")]
-        public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        [ValidateNever]
-        public Category Category { get; set; }
-
-        
-        [Display(Name = "Seller")]
-        public int SellerId { get; set; }
-        [ValidateNever]
-        public Seller Seller { get; set; }*/
+     
     }
 }
