@@ -1,6 +1,6 @@
-﻿@using EcommerceDemoWeb.Areas.Admin.Models
+﻿@using EcommerceDemoWeb.Models
 @model Product
-<form method="post" asp-action="Edit">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
     <div class="container p-3">
         <div class="row pt-4">
             <div class="col-6">
@@ -12,7 +12,7 @@
                 </a>
             </div>
         </div>
-      
+
     </div>
     <div class="border p-2 mt-2">
 
@@ -21,12 +21,57 @@
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-      
-    </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Brand"></label>
+            <input asp-for="Brand" class="form-control" />
+            <span asp-validation-for="Brand" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ListPrice"></label>
+            <input asp-for="ListPrice" class="form-control" />
+            <span asp-validation-for="ListPrice" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" type="file" id="uploadBox" name="file" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <div class="mb-3">
+
+                <label asp-for="ProductId"></label>
+                <input asp-for="ProductId" class="form-control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CategoryName"></label>
+                <select asp-for="CategoryName" asp-items="@ViewBag.CategoryList" class="form-select">
+                    <option disabled selected>--Select Category--</option>
+                </select>
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SellerName"></label>
+                <select asp-for="SellerName" asp-items="@ViewBag.SellerList" class="form-select">
+                    <option disabled selected>--Select Category--</option>
+                </select>
+                <span asp-validation-for="SellerName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+
+        </div>
 </form>
 
 
 @section Scripts{
-    @{<partial name="_ValidationScriptsPartial"/>}
+    @{
+    <partial name="_ValidationScriptsPartial" />
+}
 }

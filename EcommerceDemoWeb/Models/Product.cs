@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EcommerceDemoWeb.Areas.Admin.Models
+namespace EcommerceDemoWeb.Models
 {
     public class Product
     {
@@ -27,19 +27,13 @@ namespace EcommerceDemoWeb.Areas.Admin.Models
         [ValidateNever]
         public string ImageUrl { get; set; }
 
-        
-        //public int CategoryId { get; set; }
-        //[ForeignKey("CategoryId")]
-        //[ValidateNever]
-        //public Category Category { get; set; }
         [Required]
-        public string CategoryName { get; set; }
+        public string? CategoryName { get; set; }
+        [Required]
+        public string? SellerName { get; set; }
+
 
         
-        //public int SellerId { get; set; }
-        //[ValidateNever]
-        //public Seller Seller { get; set; }
-        //[Required]
-        public string SellerName { get; set; }
+     
     }
 }

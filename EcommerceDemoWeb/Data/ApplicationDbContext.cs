@@ -1,10 +1,11 @@
-﻿using EcommerceDemoWeb.Areas.Admin.Models;
+﻿using EcommerceDemoWeb.Models;
 using EcommerceDemoWeb.Controllers;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceDemoWeb.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -14,5 +15,11 @@ namespace EcommerceDemoWeb.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Seller> Seller { get; set; }
         public DbSet<Product> Product { get; set; }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<OrderHeader> OrderHeader { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
     }
 }

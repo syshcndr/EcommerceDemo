@@ -32,7 +32,7 @@
             <tr>
                 <td width="50%">@obj.Name</td>
                 <td width="30%">@obj.DisplayOrder</td>
-                <td class="row">
+                <td >
                      <div class="col"><button><a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button></div>
                     <div class="col"> <form method="post" asp-action="DeletePost" asp-route-id="@obj.Id">
                         <button type="submit"><i class="bi bi-trash"></i></button>
