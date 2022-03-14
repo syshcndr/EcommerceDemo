@@ -22,6 +22,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Customer\Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\Images\products\" />
   </ItemGroup>
 
 </Project>

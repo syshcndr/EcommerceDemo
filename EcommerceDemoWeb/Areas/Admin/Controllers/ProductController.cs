@@ -9,10 +9,12 @@ namespace EcommerceDemoWeb.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ProductController(ApplicationDbContext db)
+        public ProductController(ApplicationDbContext db, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -32,12 +34,35 @@ namespace EcommerceDemoWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Create(Product obj,IFormFile? file)
         {
-            
             if (ModelState.IsValid)
             {
-                
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                   /* if (obj.ImageUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }*/
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.ImageUrl = @"\images\products\" + fileName + extension;
+
+                }
+
+
                 _db.Product.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -47,6 +72,10 @@ namespace EcommerceDemoWeb.Controllers
 
         public IActionResult Edit(int? id)
         {
+            IEnumerable<SelectListItem> CategoryList = _db.Categories.ToList().Select(u => new SelectListItem { Text = u.Name, Value = u.Name });
+            IEnumerable<SelectListItem> SellerList = _db.Seller.ToList().Select(u => new SelectListItem { Text = u.Name, Value = u.Name });
+            ViewBag.CategoryList = CategoryList;
+            ViewBag.SellerList = SellerList;
             if (id==null || id == 0)
             {
                 return NotFound();
@@ -60,11 +89,28 @@ namespace EcommerceDemoWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Product obj)
+        public IActionResult Edit(Product obj, IFormFile? file)
         {
-
+                    
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"images\products");
+                    var extension = Path.GetExtension(file.FileName);
+
+                   
+
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.ImageUrl = @"\images\products\" + fileName + extension;
+
+                }
+
                 _db.Product.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");

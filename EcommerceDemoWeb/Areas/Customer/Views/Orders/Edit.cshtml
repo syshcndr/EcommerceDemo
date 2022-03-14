@@ -19,12 +19,7 @@
         <div class="mb-3">
             <label asp-for="OrderStatus"></label>
             <select asp-for="OrderStatus" class="form-select">
-				<option value="Approved">Approved</option>
-                <option value="Completed">Completed</option>
-                <option value="Processing">Processing</option>
-                <option value="Shipped">Shipped</option>
                 <option value="Cancelled">Cancelled</option>
-                <option value="Refunded">Refunded</option>   
 			</select>
             <span asp-validation-for="OrderStatus" class="text-danger"></span>
         </div>

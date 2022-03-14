@@ -31,10 +31,10 @@
         </tr>
     </thead>
     <thbody>
-        
+
         @foreach (var obj in Model)
         {
-            
+
             <tr>
                 <td>@obj.Name</td>
                 <td>@obj.Description</td>
@@ -42,14 +42,14 @@
                 <td>@obj.ListPrice</td>
                 <td>@obj.CategoryName</td>
                 <td>@obj.SellerName</td>
-                <td class="row">
-                    <div class="col"><button><a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button></div>                    
+                <td>
                     <div class="col">
+                        <button><a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button>
+
                         <form method="post" asp-action="DeletePost" asp-route-id="@obj.Id">
                             <button type="submit"><i class="bi bi-trash"></i></button>
                         </form>
                     </div>
-
                 </td>
             </tr>
         }

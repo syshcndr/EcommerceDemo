@@ -39,17 +39,12 @@
                 <td width="50%">@obj.OrderStatus</td>
                 <td>
                     <div class="col">
-                        <button><a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pencil-square"></i></a></button>
-                 
+                        
                         <form method="post" asp-action="DeletePost" asp-route-id="@obj.Id">
-                            <button type="submit"><i class="bi bi-trash"></i></button>
+                            <button type="submit">Cancel</button>
                         </form>
                     </div>
-                    @*<div class="col">
-                        <form method="post" asp-action="DeletePost" asp-route-id="@obj.Id">
-                            <button type="submit"><i class="bi bi-trash"></i></button>
-                        </form>
-                    </div>*@
+                   
 
                 </td>
             </tr>

@@ -21,11 +21,11 @@ namespace EcommerceDemoWeb.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id==null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.Seller.Find(id);
+            var categoryFromDb = _db.OrderHeader.Find(id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -34,19 +34,17 @@ namespace EcommerceDemoWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Seller obj)
+        public IActionResult Edit(OrderHeader obj)
         {
+            var header = _db.OrderHeader.FirstOrDefault(u => u.Id == obj.Id);
+            header.OrderStatus = obj.OrderStatus;
 
-            if (ModelState.IsValid)
-            {
-                _db.Seller.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
-       
+
 
         [HttpPost]
         public IActionResult DeletePost(int? id)
@@ -55,12 +53,12 @@ namespace EcommerceDemoWeb.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Seller.Find(id);            
+            var obj = _db.OrderHeader.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Seller.Remove(obj);
+            _db.OrderHeader.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
