@@ -1,7 +1,7 @@
 # EcommerceDemo
 Ecommerce Demo Crud .NET MVC Core with entity framework
 
-### If you are seeing warning in front of dependencies in Visual studio make sure to double click EcommerceDemo.sln and open it so that dependencies can be configured automatically.
+### If you are seeing warning dependencies in solution explorer in Visual studio make sure to double click EcommerceDemo.sln and open it so that dependencies can be configured automatically.
 
 ## Setup
 
